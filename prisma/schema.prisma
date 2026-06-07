@@ -228,3 +228,27 @@ model Role {
   users         User[]
 
 }
+
+model CustomerFavorite {
+
+  id            Int      @id @default(autoincrement())
+
+  customerId    Int
+
+  customer      Customer
+                @relation(
+                    fields:[customerId],
+                    references:[id]
+                )
+
+  orderId       Int
+
+  order         CustomerOrder
+                @relation(
+                    fields:[orderId],
+                    references:[id]
+                )
+
+  createdAt     DateTime @default(now())
+
+}
