@@ -38,3 +38,13 @@ export async function deleteProduct(id) {
         }
     });
 }
+
+export async function getLastProduct() {
+
+    return prisma.product.findFirst({
+        orderBy: {
+            id: "desc"
+        }
+    });
+
+}
