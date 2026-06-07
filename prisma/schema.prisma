@@ -19,4 +19,55 @@ model Product {
   minimumStock    Int
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+  purchases PurchaseItem[]
+}
+
+model Supplier {
+  id          Int      @id @default(autoincrement())
+  name        String
+  phone       String?
+  email       String?
+  address     String?
+
+  purchases   Purchase[]
+}
+
+model Purchase {
+  id            Int      @id @default(autoincrement())
+  invoiceNo     String   @unique
+  purchaseDate  DateTime @default(now())
+
+  supplierId    Int
+  supplier      Supplier @relation(fields: [supplierId], references: [id])
+
+  items         PurchaseItem[]
+}
+
+model PurchaseItem {
+  id            Int       @id @default(autoincrement())
+
+  purchaseId    Int
+  purchase      Purchase  @relation(fields: [purchaseId], references: [id])
+
+  productId     Int
+  product       Product   @relation(fields: [productId], references: [id])
+
+  quantity      Int
+  purchasePrice Float
+}
+
+model InventoryTransaction {
+  id             Int      @id @default(autoincrement())
+
+  productId      Int
+
+  movementType   String
+
+  quantity       Int
+
+  referenceNo    String
+
+  remarks         String?
+
+  createdAt      DateTime @default(now())
 }
