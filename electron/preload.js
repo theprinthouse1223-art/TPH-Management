@@ -71,6 +71,30 @@ production: {
             orderId
         )
 
+},
+
+barcode:{
+
+    generate:(barcode)=>
+
+        ipcRenderer.invoke(
+
+            "barcode:generate",
+
+            barcode
+
+        ),
+
+    generateBulk:(barcodes)=>
+
+        ipcRenderer.invoke(
+
+            "barcode:bulk",
+
+            barcodes
+
+        )
+
 }
 
     }

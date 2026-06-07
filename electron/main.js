@@ -25,6 +25,8 @@ app.whenReady().then(()=>{
 
     registerProductionIpc();
 
+    registerBarcodeIpc();
+
 });
 
 const registerProductIpc =
@@ -45,4 +47,9 @@ const registerSearchIpc =
 const registerProductionIpc =
     require(
         "./ipc/productionIpc"
+    );
+
+const registerBarcodeIpc =
+    require(
+        "./ipc/barcodeIpc"
     );
