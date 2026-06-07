@@ -28,3 +28,41 @@ export async function receiveStock(
     });
 
 }
+
+export async function issueStock(
+
+    productId,
+
+    quantity,
+
+    referenceNo
+
+){
+
+    await prisma.product.update({
+
+        where:{
+            id:productId
+        },
+
+        data:{
+            stock:{
+                decrement:quantity
+            }
+        }
+
+    });
+
+    await createInventoryTransaction({
+
+        productId,
+
+        movementType:"OUT",
+
+        quantity,
+
+        referenceNo
+
+    });
+
+}

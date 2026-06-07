@@ -20,6 +20,7 @@ model Product {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   purchases PurchaseItem[]
+  sales SaleItem[]
 }
 
 model Supplier {
@@ -70,4 +71,37 @@ model InventoryTransaction {
   remarks         String?
 
   createdAt      DateTime @default(now())
+}
+
+model Sale {
+
+  id            Int      @id @default(autoincrement())
+
+  invoiceNo     String   @unique
+
+  paymentMode   String
+
+  totalAmount   Float
+
+  createdAt     DateTime @default(now())
+
+  items          SaleItem[]
+}
+
+model SaleItem {
+
+  id            Int      @id @default(autoincrement())
+
+  saleId        Int
+
+  sale          Sale     @relation(fields:[saleId],references:[id])
+
+  productId     Int
+
+  product       Product  @relation(fields:[productId],references:[id])
+
+  quantity      Int
+
+  sellingPrice  Float
+
 }
