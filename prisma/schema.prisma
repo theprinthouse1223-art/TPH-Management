@@ -105,3 +105,84 @@ model SaleItem {
   sellingPrice  Float
 
 }
+
+model Customer {
+
+  id          Int      @id @default(autoincrement())
+
+  name        String
+
+  phone       String
+
+  email       String?
+
+  orders      CustomerOrder[]
+
+}
+
+model CustomerOrder {
+
+  id            Int      @id @default(autoincrement())
+
+  orderNo       String   @unique
+
+  customerId    Int
+
+  customer      Customer @relation(
+                    fields:[customerId],
+                    references:[id]
+                )
+
+  status        String
+
+  createdAt     DateTime @default(now())
+
+  items         CustomerOrderItem[]
+
+  artworks      ArtworkFile[]
+
+}
+
+model CustomerOrderItem {
+
+  id             Int      @id @default(autoincrement())
+
+  orderId        Int
+
+  order          CustomerOrder
+                 @relation(
+                    fields:[orderId],
+                    references:[id]
+                 )
+
+  productId      Int
+
+  product        Product
+                 @relation(
+                    fields:[productId],
+                    references:[id]
+                 )
+
+  quantity       Int
+
+}
+
+model ArtworkFile {
+
+  id              Int      @id @default(autoincrement())
+
+  orderId         Int
+
+  order           CustomerOrder
+                  @relation(
+                    fields:[orderId],
+                    references:[id]
+                  )
+
+  fileName        String
+
+  filePath        String
+
+  uploadedAt      DateTime @default(now())
+
+}
