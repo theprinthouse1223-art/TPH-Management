@@ -21,6 +21,8 @@ app.whenReady().then(()=>{
 
     createWindow();
 
+    registerSearchIpc
+
 });
 
 const registerProductIpc =
@@ -31,4 +33,9 @@ const registerProductIpc =
 const registerReportIpc =
     require(
         "./ipc/reportIpc"
+    );
+
+const registerSearchIpc =
+    require(
+        "./ipc/searchIpc"
     );

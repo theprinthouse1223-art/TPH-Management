@@ -42,7 +42,22 @@ contextBridge.exposeInMainWorld(
             "reports:dashboard"
         )
 
+},
+
+search:{
+
+    search:(text)=>
+
+        ipcRenderer.invoke(
+
+            "search:all",
+
+            text
+
+        )
+
 }
 
     }
 );
+
