@@ -22,6 +22,11 @@ model Product {
   purchases PurchaseItem[]
   sales SaleItem[]
   orderItems CustomerOrderItem[]
+  isRawMaterial Boolean @default(false)
+
+unit String?
+
+currentCost Float?
 }
 
 model Supplier {
@@ -248,6 +253,28 @@ model CustomerFavorite {
                     fields:[orderId],
                     references:[id]
                 )
+
+  createdAt     DateTime @default(now())
+
+}
+
+model MaterialConsumption {
+
+  id            Int      @id @default(autoincrement())
+
+  productId     Int
+
+  product       Product
+                @relation(
+                    fields:[productId],
+                    references:[id]
+                )
+
+  quantity      Float
+
+  referenceType String
+
+  referenceNo   String
 
   createdAt     DateTime @default(now())
 
