@@ -1,4 +1,4 @@
-import prisma from "../database/prismaClient";
+import prisma from "../../electron/database/prismaClient";
 
 export async function getProducts() {
     return prisma.product.findMany({

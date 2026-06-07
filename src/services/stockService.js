@@ -1,4 +1,4 @@
-import prisma from "../database/prismaClient";
+import prisma from "../../electron/database/prismaClient";
 import {
     createInventoryTransaction
 } from "../repositories/inventoryTransactionRepository";

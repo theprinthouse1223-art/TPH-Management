@@ -4,7 +4,7 @@ const {
 
 const prisma =
     require(
-        "../../src/database/prismaClient"
+        "../database/prismaClient"
     ).default;
 
 function registerProductIpc(){

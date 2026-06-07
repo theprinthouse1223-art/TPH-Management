@@ -1,4 +1,4 @@
-import prisma from "../database/prismaClient";
+import prisma from "../../electron/database/prismaClient";
 
 export async function createInventoryTransaction(data) {
     return prisma.inventoryTransaction.create({

@@ -12,24 +12,21 @@ export default function InventoryPage() {
 
     const [barcode, setBarcode] = useState("");
 
-async function handleSave(
-    product
-){
+const [refreshKey,setRefreshKey] =
+    useState(0);
+
+async function handleSave(product){
 
     const saved =
-
         await createInventoryProduct(
-
             product
-
         );
 
-    setBarcode(
+    setBarcode(saved.barcode);
 
-        saved.barcode
-
+    setRefreshKey(
+        previous => previous + 1
     );
-
 }
 
     return (
@@ -77,7 +74,9 @@ async function handleSave(
 
             <hr/>
 
-            <ProductGrid/>
+            <ProductGrid
+    refreshKey={refreshKey}
+/>
 
         </div>
 

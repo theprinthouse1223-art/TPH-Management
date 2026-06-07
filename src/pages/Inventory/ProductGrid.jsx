@@ -31,6 +31,12 @@ export default function ProductGrid(){
 
     },[]);
 
+    useEffect(()=>{
+
+    load();
+
+},[refreshKey]);
+
     return(
 
         <table
