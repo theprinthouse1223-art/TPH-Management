@@ -64,3 +64,12 @@ export async function getReadyForBilling(){
     });
 
 }
+
+export async function getDashboardData(){
+
+    return window
+        .tph
+        .reports
+        .getDashboardData();
+
+}

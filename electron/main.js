@@ -17,6 +17,8 @@ app.whenReady().then(()=>{
 
     registerProductIpc();
 
+    registerReportIpc();
+
     createWindow();
 
 });
@@ -24,4 +26,9 @@ app.whenReady().then(()=>{
 const registerProductIpc =
     require(
         "./ipc/productIpc"
+    );
+
+const registerReportIpc =
+    require(
+        "./ipc/reportIpc"
     );

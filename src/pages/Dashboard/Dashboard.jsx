@@ -1,6 +1,46 @@
 import KPIBox from "./KPIBox";
 
+import {
+    useEffect,
+    useState
+} from "react";
+
+import KPIBox from "./KPIBox";
+
+import {
+    getDashboardData
+} from "../../services/reportService";
+
 export default function Dashboard(){
+
+    const [data,setData] =
+        useState({
+
+            todaySales:0,
+
+            lowStock:0,
+
+            pendingOrders:0,
+
+            readyForBilling:0
+
+        });
+
+    useEffect(()=>{
+
+        async function load(){
+
+            const result =
+
+                await getDashboardData();
+
+            setData(result);
+
+        }
+
+        load();
+
+    },[]);
 
     return(
 
@@ -14,37 +54,42 @@ export default function Dashboard(){
 
             <hr/>
 
-            <KPIBox
+            <div
+                style={{
+                    display:"flex",
+                    flexWrap:"wrap"
+                }}
+            >
 
-                title="Today's Sales"
+                <KPIBox
+                    title="Today's Sales"
+                    value={
+                        `₹${data.todaySales}`
+                    }
+                />
 
-                value="₹0"
+                <KPIBox
+                    title="Pending Orders"
+                    value={
+                        data.pendingOrders
+                    }
+                />
 
-            />
+                <KPIBox
+                    title="Ready For Billing"
+                    value={
+                        data.readyForBilling
+                    }
+                />
 
-            <KPIBox
+                <KPIBox
+                    title="Low Stock"
+                    value={
+                        data.lowStock
+                    }
+                />
 
-                title="Pending Orders"
-
-                value="0"
-
-            />
-
-            <KPIBox
-
-                title="Ready For Billing"
-
-                value="0"
-
-            />
-
-            <KPIBox
-
-                title="Low Stock"
-
-                value="0"
-
-            />
+            </div>
 
         </div>
 

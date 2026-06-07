@@ -33,7 +33,16 @@ contextBridge.exposeInMainWorld(
                     id
                 )
 
-        }
+        },
+
+        reports: {
+
+    getDashboardData: () =>
+        ipcRenderer.invoke(
+            "reports:dashboard"
+        )
+
+}
 
     }
 );
