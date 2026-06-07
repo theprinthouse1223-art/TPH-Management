@@ -141,6 +141,15 @@ model CustomerOrder {
 
   productionJob ProductionJob?
 
+  invoiceGenerated Boolean @default(false)
+
+saleId Int?
+
+sale   Sale? @relation(
+            fields:[saleId],
+            references:[id]
+       )
+
 }
 
 model CustomerOrderItem {
