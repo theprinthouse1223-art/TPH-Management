@@ -2,23 +2,29 @@ import * as repository from "../repositories/productRepository";
 
 import { generateSKU } from "../utils/skuGenerator";
 import { getLastProduct } from "../repositories/productRepository";
+import { generateSKU } from "../utils/skuGenerator";
 
-export async function saveProduct(product) {
 
-    if (!product.barcode)
-        throw new Error("Barcode required");
+export async function loadProducts(){
 
-    if (!product.sku)
-        throw new Error("SKU required");
+    return window
+        .tph
+        .products
+        .getAll();
 
-    if (!product.name)
-        throw new Error("Product Name required");
-
-    return repository.createProduct(product);
 }
 
-export async function loadProducts() {
-    return repository.getProducts();
+export async function saveProduct(
+    product
+){
+
+    return window
+        .tph
+        .products
+        .create(
+            product
+        );
+
 }
 
 export async function searchBarcode(barcode) {
@@ -33,28 +39,36 @@ export async function removeProduct(id) {
     return repository.deleteProduct(id);
 }
 
+
 export async function createInventoryProduct(
     data
-) {
+){
 
-    const last = await getLastProduct();
-
-    const nextId =
-        last
-        ? last.id + 1
-        : 1;
+    // Temporary SKU generation
 
     data.sku =
         generateSKU(
             data.category,
-            nextId
+            Date.now()
         );
 
     data.barcode =
         data.sku;
 
-    return repository.createProduct(
-        data
-    );
+    return window
+        .tph
+        .products
+        .create(
+            data
+        );
+
+}
+
+export async function loadProducts(){
+
+    return window
+        .tph
+        .products
+        .getAll();
 
 }

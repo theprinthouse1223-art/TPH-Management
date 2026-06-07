@@ -13,4 +13,15 @@ function createWindow() {
     window.loadURL("http://localhost:5173");
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(()=>{
+
+    registerProductIpc();
+
+    createWindow();
+
+});
+
+const registerProductIpc =
+    require(
+        "./ipc/productIpc"
+    );
