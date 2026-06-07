@@ -1,8 +1,41 @@
-export default function ProductGrid() {
+import {
+    useEffect,
+    useState
+} from "react";
 
-    return (
+import {
+    loadProducts
+} from "../../services/productService";
 
-        <table border="1">
+export default function ProductGrid(){
+
+    const [products,
+           setProducts] =
+        useState([]);
+
+    useEffect(()=>{
+
+        async function load(){
+
+            const data =
+
+                await loadProducts();
+
+            setProducts(
+                data
+            );
+
+        }
+
+        load();
+
+    },[]);
+
+    return(
+
+        <table
+            border="1"
+        >
 
             <thead>
 
@@ -21,6 +54,38 @@ export default function ProductGrid() {
             </thead>
 
             <tbody>
+
+            {
+
+                products.map(
+
+                    p=>
+
+                    <tr
+                        key={p.id}
+                    >
+
+                        <td>
+                            {p.barcode}
+                        </td>
+
+                        <td>
+                            {p.sku}
+                        </td>
+
+                        <td>
+                            {p.name}
+                        </td>
+
+                        <td>
+                            {p.stock}
+                        </td>
+
+                    </tr>
+
+                )
+
+            }
 
             </tbody>
 

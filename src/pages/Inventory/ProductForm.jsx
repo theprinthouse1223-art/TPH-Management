@@ -1,43 +1,153 @@
-export default function ProductForm() {
+import { useState } from "react";
 
-    return (
+export default function ProductForm(
+    {
+        onSave
+    }
+){
+
+    const [name,setName] =
+        useState("");
+
+    const [category,setCategory] =
+        useState("MUG");
+
+    const [purchasePrice,
+           setPurchasePrice] =
+        useState(0);
+
+    const [sellingPrice,
+           setSellingPrice] =
+        useState(0);
+
+    const [stock,setStock] =
+        useState(0);
+
+    const [minimumStock,
+           setMinimumStock] =
+        useState(0);
+
+    return(
+
         <div>
 
-            <h2>Add Product</h2>
+            <input
+                placeholder="Name"
+                value={name}
+                onChange={
+                    e=>setName(
+                        e.target.value
+                    )
+                }
+            />
 
-            <input placeholder="Barcode" />
+            <br/>
 
-            <br />
+            <select
+                value={category}
+                onChange={
+                    e=>setCategory(
+                        e.target.value
+                    )
+                }
+            >
 
-            <input placeholder="SKU" />
+                <option>MUG</option>
+                <option>FRAME</option>
+                <option>SHIRT</option>
+                <option>KEYCHAIN</option>
+                <option>BOTTLE</option>
 
-            <br />
+            </select>
 
-            <input placeholder="Product Name" />
+            <br/>
 
-            <br />
+            <input
+                placeholder="Purchase Price"
+                onChange={
+                    e=>
+                    setPurchasePrice(
+                        Number(
+                            e.target.value
+                        )
+                    )
+                }
+            />
 
-            <input placeholder="Category" />
+            <br/>
 
-            <br />
+            <input
+                placeholder="Selling Price"
+                onChange={
+                    e=>
+                    setSellingPrice(
+                        Number(
+                            e.target.value
+                        )
+                    )
+                }
+            />
 
-            <input placeholder="Purchase Price" />
+            <br/>
 
-            <br />
+            <input
+                placeholder="Opening Stock"
+                onChange={
+                    e=>
+                    setStock(
+                        Number(
+                            e.target.value
+                        )
+                    )
+                }
+            />
 
-            <input placeholder="Selling Price" />
+            <br/>
 
-            <br />
+            <input
+                placeholder="Minimum Stock"
+                onChange={
+                    e=>
+                    setMinimumStock(
+                        Number(
+                            e.target.value
+                        )
+                    )
+                }
+            />
 
-            <input placeholder="Opening Stock" />
+            <br/>
 
-            <br />
+            <button
 
-            <button>
-                Save
+                onClick={()=>
+
+                    onSave({
+
+                        name,
+
+                        category,
+
+                        purchasePrice,
+
+                        sellingPrice,
+
+                        stock,
+
+                        minimumStock
+
+                    })
+
+                }
+
+            >
+
+                Save Product
+
             </button>
 
         </div>
+
     );
 
 }

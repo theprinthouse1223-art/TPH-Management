@@ -12,37 +12,25 @@ export default function InventoryPage() {
 
     const [barcode, setBarcode] = useState("");
 
-    async function handleSave() {
+async function handleSave(
+    product
+){
 
-        // Temporary sample data
-        // Later this will come from ProductForm
+    const saved =
 
-        const product = {
+        await createInventoryProduct(
 
-            name: "Coffee Mug",
+            product
 
-            category: "MUG",
-
-            purchasePrice: 80,
-
-            sellingPrice: 200,
-
-            stock: 10,
-
-            minimumStock: 2
-
-        };
-
-        const saved =
-            await createInventoryProduct(
-                product
-            );
-
-        setBarcode(
-            saved.barcode
         );
 
-    }
+    setBarcode(
+
+        saved.barcode
+
+    );
+
+}
 
     return (
 
@@ -56,8 +44,15 @@ export default function InventoryPage() {
 
             <hr/>
 
-            <ProductForm/>
+<ProductForm
 
+    onSave={
+
+        handleSave
+
+    }
+
+/>
             <br/>
 
             <button
