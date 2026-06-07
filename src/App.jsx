@@ -1,17 +1,7 @@
-export default function App() {
-    return (
-        <div>
-            <h1>The Print House ERP</h1>
+import AppRouter from "./router/AppRouter";
 
-            <hr />
+export default function App(){
 
-            <h2>Dashboard</h2>
+    return <AppRouter/>;
 
-            <p>Today's Sales : ₹0</p>
-
-            <p>Pending Orders : 0</p>
-
-            <p>Low Stock : 0</p>
-        </div>
-    );
 }
