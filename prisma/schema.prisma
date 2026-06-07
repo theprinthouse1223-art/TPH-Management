@@ -87,6 +87,8 @@ model Sale {
   createdAt     DateTime @default(now())
 
   items          SaleItem[]
+
+  customerOrders CustomerOrder[]
 }
 
 model SaleItem {
@@ -143,12 +145,9 @@ model CustomerOrder {
 
   invoiceGenerated Boolean @default(false)
 
-saleId Int?
+  saleId Int?
 
-sale   Sale? @relation(
-            fields:[saleId],
-            references:[id]
-       )
+  sale   Sale? @relation(fields: [saleId], references: [id])
 
 }
 
@@ -199,5 +198,33 @@ model ProductionJob {
   remarks       String?
 
   updatedAt     DateTime @updatedAt
+
+}
+
+model User {
+
+  id            Int      @id @default(autoincrement())
+
+  username      String   @unique
+
+  passwordHash  String
+
+  fullName      String
+
+  active        Boolean  @default(true)
+
+  roleId        Int
+
+  role          Role @relation(fields: [roleId], references: [id])
+
+}
+
+model Role {
+
+  id            Int      @id @default(autoincrement())
+
+  name          String   @unique
+
+  users         User[]
 
 }
