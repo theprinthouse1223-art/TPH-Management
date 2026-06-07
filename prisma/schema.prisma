@@ -232,6 +232,8 @@ model Role {
 
   users         User[]
 
+  permissions   RolePermission[]
+
 }
 
 model CustomerFavorite {
@@ -277,5 +279,39 @@ model MaterialConsumption {
   referenceNo   String
 
   createdAt     DateTime @default(now())
+
+}
+
+model Permission {
+
+  id          Int      @id @default(autoincrement())
+
+  code        String   @unique
+
+  description String
+
+  rolePermissions RolePermission[]
+
+}
+
+model RolePermission {
+
+  id            Int      @id @default(autoincrement())
+
+  roleId        Int
+
+  permissionId  Int
+
+  role          Role
+                @relation(
+                    fields:[roleId],
+                    references:[id]
+                )
+
+  permission    Permission
+                @relation(
+                    fields:[permissionId],
+                    references:[id]
+                )
 
 }
