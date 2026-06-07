@@ -56,6 +56,21 @@ search:{
 
         )
 
+},
+
+production: {
+
+    dashboard: () =>
+        ipcRenderer.invoke(
+            "production:dashboard"
+        ),
+
+    moveNext: (orderId) =>
+        ipcRenderer.invoke(
+            "production:moveNext",
+            orderId
+        )
+
 }
 
     }
