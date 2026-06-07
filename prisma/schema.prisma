@@ -21,6 +21,7 @@ model Product {
   updatedAt       DateTime @updatedAt
   purchases PurchaseItem[]
   sales SaleItem[]
+  orderItems CustomerOrderItem[]
 }
 
 model Supplier {
@@ -94,11 +95,11 @@ model SaleItem {
 
   saleId        Int
 
-  sale          Sale     @relation(fields:[saleId],references:[id])
+  sale          Sale @relation(fields: [saleId], references: [id])
 
   productId     Int
 
-  product       Product  @relation(fields:[productId],references:[id])
+  product       Product @relation(fields: [productId], references: [id])
 
   quantity      Int
 
@@ -128,10 +129,7 @@ model CustomerOrder {
 
   customerId    Int
 
-  customer      Customer @relation(
-                    fields:[customerId],
-                    references:[id]
-                )
+  customer      Customer @relation(fields: [customerId], references: [id])
 
   status        String
 
@@ -141,6 +139,8 @@ model CustomerOrder {
 
   artworks      ArtworkFile[]
 
+  productionJob ProductionJob?
+
 }
 
 model CustomerOrderItem {
@@ -149,19 +149,11 @@ model CustomerOrderItem {
 
   orderId        Int
 
-  order          CustomerOrder
-                 @relation(
-                    fields:[orderId],
-                    references:[id]
-                 )
+  order          CustomerOrder @relation(fields: [orderId], references: [id])
 
   productId      Int
 
-  product        Product
-                 @relation(
-                    fields:[productId],
-                    references:[id]
-                 )
+  product        Product @relation(fields: [productId], references: [id])
 
   quantity       Int
 
@@ -173,11 +165,7 @@ model ArtworkFile {
 
   orderId         Int
 
-  order           CustomerOrder
-                  @relation(
-                    fields:[orderId],
-                    references:[id]
-                  )
+  order           CustomerOrder @relation(fields: [orderId], references: [id])
 
   fileName        String
 
@@ -193,11 +181,7 @@ model ProductionJob {
 
   orderId       Int      @unique
 
-  order          CustomerOrder
-                 @relation(
-                    fields:[orderId],
-                    references:[id]
-                 )
+  order          CustomerOrder @relation(fields: [orderId], references: [id])
 
   stage         String
 
