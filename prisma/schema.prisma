@@ -186,3 +186,25 @@ model ArtworkFile {
   uploadedAt      DateTime @default(now())
 
 }
+
+model ProductionJob {
+
+  id            Int      @id @default(autoincrement())
+
+  orderId       Int      @unique
+
+  order          CustomerOrder
+                 @relation(
+                    fields:[orderId],
+                    references:[id]
+                 )
+
+  stage         String
+
+  assignedTo    String?
+
+  remarks       String?
+
+  updatedAt     DateTime @updatedAt
+
+}
