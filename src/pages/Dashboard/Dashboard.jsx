@@ -11,6 +11,8 @@ import {
     getDashboardData
 } from "../../services/reportService";
 
+import QuickReports from "./QuickReports";
+
 export default function Dashboard(){
 
     const [data,setData] =
@@ -90,6 +92,10 @@ export default function Dashboard(){
                 />
 
             </div>
+
+            <hr/>
+
+<QuickReports/>
 
         </div>
 

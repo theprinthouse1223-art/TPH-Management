@@ -95,6 +95,20 @@ barcode:{
 
         )
 
+},
+
+exports:{
+
+    excel:(config)=>
+
+        ipcRenderer.invoke(
+
+            "export:excel",
+
+            config
+
+        )
+
 }
 
     }

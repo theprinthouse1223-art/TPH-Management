@@ -78,7 +78,49 @@ async function handleSave(product){
     refreshKey={refreshKey}
 />
 
+ <br/>
+
+        <button>
+
+    Export Inventory
+
+</button>
+
+await exportTable(
+
+    "Inventory",
+
+    [
+
+        {
+            header:"Barcode",
+            key:"barcode"
+        },
+
+        {
+            header:"SKU",
+            key:"sku"
+        },
+
+        {
+            header:"Name",
+            key:"name"
+        },
+
+        {
+            header:"Stock",
+            key:"stock"
+        }
+
+    ],
+
+    products
+
+);
+
         </div>
+
+       
 
     );
 
