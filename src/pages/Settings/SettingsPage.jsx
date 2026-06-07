@@ -1,3 +1,5 @@
+import BackupPage from "./BackupPage";
+
 export default function SettingsPage(){
 
     return(
@@ -37,6 +39,10 @@ export default function SettingsPage(){
                 </li>
 
             </ul>
+
+            <hr/>
+
+<BackupPage/>
 
         </div>
 

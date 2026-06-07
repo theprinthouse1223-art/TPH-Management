@@ -1,8 +1,12 @@
 export function createBackup(){
 
-    console.log(
-        "Database backup started"
-    );
+    return window
+
+        .tph
+
+        .backup
+
+        .create();
 
 }
 

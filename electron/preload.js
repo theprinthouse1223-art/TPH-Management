@@ -109,6 +109,18 @@ exports:{
 
         )
 
+},
+
+backup:{
+
+    create:()=>
+
+        ipcRenderer.invoke(
+
+            "backup:create"
+
+        )
+
 }
 
     }
